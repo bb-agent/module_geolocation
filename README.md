@@ -1,11 +1,11 @@
 module_geolocation
 ================
 
-FruityWiFi geolocation module
+BlackBlulb geolocation module
 
 
 v1.0
 ---------------------------------
-- FruityWiFi v2.4 is required
+- BlackBlulb v2.4 is required
 - Monitor mode is required (mon0)
 
