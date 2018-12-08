@@ -47,7 +47,7 @@ function killRegex($regex){
 	
 	if (count($output) > 0) {
 		$exec = "kill " . $output[0];
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 	}	
 }
 
@@ -56,31 +56,31 @@ if($service == "geolocation") {
     if ($action == "run") {
         
         $exec = "$bin_killall mdk3";
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
         sleep(0.5);
         for ($i=0; $i < 5; $i++) {
             $exec = "$bin_screen -md $bin_mdk3 mon0 b -v templates/$geolocation_conf -g -t  > /dev/null 2 &";
             echo "$exec <br>";
-            exec_fruitywifi($exec);
+            exec_blackbulb($exec);
         }
         
     } else if ($action == "end") {
         
         $exec = "$bin_killall mdk3";
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
         
     } else if ($action == "start") {
 
         $exec = "python geolocation-path.py -d templates/ -w $mod_geolocation_wait -f path/$mod_geolocation_onstart -t $mod_geolocation_threads  > /dev/null 2 &";
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
         
         // COPY LOG
         if ( 0 < filesize( $mod_logs ) ) {
             $exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
-            //exec_fruitywifi($exec);
+            //exec_blackbulb($exec);
             
             $exec = "$bin_echo '' > $mod_logs";
-            //exec_fruitywifi($exec);
+            //exec_blackbulb($exec);
         }
     
     
@@ -89,7 +89,7 @@ if($service == "geolocation") {
         killRegex("geolocation-path.py");
         sleep(0.5);
         $exec = "$bin_killall mdk3";
-        exec_fruitywifi($exec);
+        exec_blackbulb($exec);
 
     }
 
@@ -98,10 +98,10 @@ if($service == "geolocation") {
 if ($install == "install_autostart") {
 
     $exec = "chmod 755 install.sh";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 
     $exec = "$bin_sudo ./install.sh > $log_path/install.txt &";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 
     header('Location: ../../install.php?module=autostart');
     exit;
